@@ -6,7 +6,7 @@ class BetaFace: ObservableObject {
     @Published var UUUID : String?
     
     func getData(callback: @escaping () -> Void,selectedImageURL: URL?) {
-        guard let url = URL(string: "https://www.betafaceapi.com/api/v2/media/file") else {
+        guard let url = URL(string: "https://www.betafaceapi.com/api/v2/media/file") else { 
             print("Error creating URL")
             return
         }

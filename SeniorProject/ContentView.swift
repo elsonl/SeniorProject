@@ -53,7 +53,6 @@ struct ContentView: View {
     @State private var selectedImage: UIImage?
     @State var UserUUID : String?
     @StateObject private var betaface = BetaFace()
-    @StateObject private var betaface2 = BetaFace2()
 
     var body: some View {
         VStack {
@@ -62,7 +61,7 @@ struct ContentView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
-            } else {
+            } else { 
                 Text("No image selected")
             }
 
