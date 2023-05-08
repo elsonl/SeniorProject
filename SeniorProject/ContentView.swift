@@ -58,7 +58,7 @@ struct ContentView: View {
         VStack {
             if let image = selectedImage {
                 Image(uiImage: image)
-                    .resizable()
+                    .resizable() 
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 200, height: 200)
             } else { 
