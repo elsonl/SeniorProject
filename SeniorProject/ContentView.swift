@@ -19,7 +19,6 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
-        // No implementation needed here
     }
     
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -53,7 +52,7 @@ struct ContentView: View {
     @State private var selectedImage: UIImage?
     @State var UserUUID : String?
     @StateObject private var betaface = BetaFace()
-
+    @StateObject private var recognize = Recognize()
     var body: some View {
         VStack {
             if let image = selectedImage {
@@ -89,8 +88,20 @@ struct ContentView: View {
             }
             .padding()
         }
+        // Recodnize image - search against database
+        Button(action: {
+            print(UserUUID! )
+            recognize.getData2(callback: {
+                print(recognize.responses2)
+            }, faceUUID: UserUUID!)
+
+
+        }) {
+            Text(" Recognize")
+
+        }
+        .padding()
     }
-    
     
     private func uploadImage() {
         guard let selectedImage = selectedImage else {

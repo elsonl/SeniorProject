@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86A5A9042A09C96600B81CA8 /* Recognize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A9032A09C96600B81CA8 /* Recognize.swift */; };
 		86F3B9932A044181009930C8 /* SeniorProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9922A044181009930C8 /* SeniorProjectApp.swift */; };
 		86F3B9952A044181009930C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9942A044181009930C8 /* ContentView.swift */; };
 		86F3B9972A044183009930C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86F3B9962A044183009930C8 /* Assets.xcassets */; };
@@ -14,9 +15,7 @@
 		86F3B9A42A044184009930C8 /* SeniorProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9A32A044184009930C8 /* SeniorProjectTests.swift */; };
 		86F3B9AE2A044184009930C8 /* SeniorProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9AD2A044184009930C8 /* SeniorProjectUITests.swift */; };
 		86F3B9B02A044184009930C8 /* SeniorProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9AF2A044184009930C8 /* SeniorProjectUITestsLaunchTests.swift */; };
-		86F3B9C32A045E9B009930C8 /* Last Resort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9C22A045E9B009930C8 /* Last Resort.swift */; };
 		86F3B9C62A0546D4009930C8 /* BetaFace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9C52A0546D4009930C8 /* BetaFace.swift */; };
-		86F3B9C82A080DFD009930C8 /* BetaFace2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9C72A080DFD009930C8 /* BetaFace2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		86A5A9032A09C96600B81CA8 /* Recognize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognize.swift; sourceTree = "<group>"; };
 		86F3B98F2A044181009930C8 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F3B9922A044181009930C8 /* SeniorProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectApp.swift; sourceTree = "<group>"; };
 		86F3B9942A044181009930C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,9 +47,7 @@
 		86F3B9A92A044184009930C8 /* SeniorProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeniorProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F3B9AD2A044184009930C8 /* SeniorProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITests.swift; sourceTree = "<group>"; };
 		86F3B9AF2A044184009930C8 /* SeniorProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		86F3B9C22A045E9B009930C8 /* Last Resort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Last Resort.swift"; sourceTree = "<group>"; };
 		86F3B9C52A0546D4009930C8 /* BetaFace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaFace.swift; sourceTree = "<group>"; };
-		86F3B9C72A080DFD009930C8 /* BetaFace2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetaFace2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +102,6 @@
 				86F3B9BC2A0441CF009930C8 /* Views */,
 				86F3B9BD2A0441E2009930C8 /* api */,
 				86F3B9962A044183009930C8 /* Assets.xcassets */,
-				86F3B9C42A045EC5009930C8 /* unused */,
 				86F3B9982A044183009930C8 /* Preview Content */,
 			);
 			path = SeniorProject;
@@ -147,17 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				86F3B9C52A0546D4009930C8 /* BetaFace.swift */,
+				86A5A9032A09C96600B81CA8 /* Recognize.swift */,
 			);
 			path = api;
-			sourceTree = "<group>";
-		};
-		86F3B9C42A045EC5009930C8 /* unused */ = {
-			isa = PBXGroup;
-			children = (
-				86F3B9C22A045E9B009930C8 /* Last Resort.swift */,
-				86F3B9C72A080DFD009930C8 /* BetaFace2.swift */,
-			);
-			path = unused;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,10 +279,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A5A9042A09C96600B81CA8 /* Recognize.swift in Sources */,
 				86F3B9C62A0546D4009930C8 /* BetaFace.swift in Sources */,
 				86F3B9952A044181009930C8 /* ContentView.swift in Sources */,
-				86F3B9C32A045E9B009930C8 /* Last Resort.swift in Sources */,
-				86F3B9C82A080DFD009930C8 /* BetaFace2.swift in Sources */,
 				86F3B9932A044181009930C8 /* SeniorProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorProject/Preview Content\"";
@@ -468,6 +457,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Elson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -479,6 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SeniorProject/Preview Content\"";
@@ -497,6 +488,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Elson;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

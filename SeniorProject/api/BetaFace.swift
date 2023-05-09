@@ -4,6 +4,8 @@ import SwiftUI
 class BetaFace: ObservableObject {
     @Published var responses = Response()
     @Published var UUUID : String?
+    @Published var UUIDArray : [String] = []
+    
     
     func getData(callback: @escaping () -> Void,selectedImageURL: URL?) {
         guard let url = URL(string: "https://www.betafaceapi.com/api/v2/media/file") else { 
@@ -11,7 +13,7 @@ class BetaFace: ObservableObject {
             return
         }
         print("URL created")
-        
+    
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         let boundary = UUID().uuidString
@@ -42,8 +44,9 @@ class BetaFace: ObservableObject {
                     self.responses = response
                     print(self.responses.media)
                     self.UUUID = self.responses.media?.faces[0].face_uuid
+                    self.UUIDArray.append(self.UUUID!)
+                    print(self.UUIDArray)
                     callback()
-                    // Handle the response as needed
                 }
             } else {
                 print("Error with decoder")
