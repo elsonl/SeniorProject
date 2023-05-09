@@ -10,6 +10,7 @@
 		86A5A9042A09C96600B81CA8 /* Recognize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A9032A09C96600B81CA8 /* Recognize.swift */; };
 		86A5A9062A09F00C00B81CA8 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A9052A09F00C00B81CA8 /* Transform.swift */; };
 		86A5A9082A09F7E500B81CA8 /* RecognizeUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A9072A09F7E500B81CA8 /* RecognizeUUID.swift */; };
+		86A5A90A2A0AC78600B81CA8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A5A9092A0AC78600B81CA8 /* Launch Screen.storyboard */; };
 		86F3B9932A044181009930C8 /* SeniorProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9922A044181009930C8 /* SeniorProjectApp.swift */; };
 		86F3B9952A044181009930C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9942A044181009930C8 /* ContentView.swift */; };
 		86F3B9972A044183009930C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86F3B9962A044183009930C8 /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		86A5A9032A09C96600B81CA8 /* Recognize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recognize.swift; sourceTree = "<group>"; };
 		86A5A9052A09F00C00B81CA8 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		86A5A9072A09F7E500B81CA8 /* RecognizeUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeUUID.swift; sourceTree = "<group>"; };
+		86A5A9092A0AC78600B81CA8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		86F3B98F2A044181009930C8 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F3B9922A044181009930C8 /* SeniorProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectApp.swift; sourceTree = "<group>"; };
 		86F3B9942A044181009930C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				86F3B9BD2A0441E2009930C8 /* api */,
 				86F3B9962A044183009930C8 /* Assets.xcassets */,
 				86F3B9982A044183009930C8 /* Preview Content */,
+				86A5A9092A0AC78600B81CA8 /* Launch Screen.storyboard */,
 			);
 			path = SeniorProject;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A5A90A2A0AC78600B81CA8 /* Launch Screen.storyboard in Resources */,
 				86F3B99A2A044183009930C8 /* Preview Assets.xcassets in Resources */,
 				86F3B9972A044183009930C8 /* Assets.xcassets in Resources */,
 			);
@@ -446,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -453,9 +458,12 @@
 				DEVELOPMENT_TEAM = 27RKHNWK5D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fame Finder";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -477,6 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -484,9 +493,12 @@
 				DEVELOPMENT_TEAM = 27RKHNWK5D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Fame Finder";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

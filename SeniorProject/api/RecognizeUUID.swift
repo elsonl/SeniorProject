@@ -36,7 +36,7 @@ class RecognizeUUID : ObservableObject{
                 DispatchQueue.main.async{
                     self.responses4 = response4
                     print(self.responses4.results)
-                    self.match = response4.results[0].matches[2].face_uuid!
+                    self.match = response4.results[0].matches[1].face_uuid!
                     callback()
                     
                 }

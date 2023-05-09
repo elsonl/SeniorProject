@@ -44,7 +44,7 @@ class BetaFace: ObservableObject {
                     self.responses = response
                     print(self.responses.media)
                     self.UUUID = self.responses.media?.faces[0].face_uuid
-                    self.UUIDArray.append(self.UUUID!)
+                    self.UUIDArray.append(self.UUUID! ?? "nothing here32")
                     print(self.UUIDArray)
                     callback()
                 }
