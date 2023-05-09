@@ -1,12 +1,13 @@
 import Foundation
 import SwiftUI
 
-class Recognize: ObservableObject {
-    @Published var responses2 = Response2()
-    @Published var recognizeUUID : String = ""
-    
-    func getData2(callback: @escaping () -> Void, faceUUID: String) {
-        guard let url = URL(string: "https://www.betafaceapi.com/api/v2/recognize") else {
+class Transform: ObservableObject {
+    @Published var responses3 = Response3()
+    @Published var imageBase64 : String = ""
+
+    func getData3(callback: @escaping () -> Void, faceUUID: String) {
+        print(faceUUID + " TRANSFORM UUID")
+        guard let url = URL(string: "https://www.betafaceapi.com/api/v2/transform") else {
             print("Error creating URL")
             return
         }
@@ -19,16 +20,10 @@ class Recognize: ObservableObject {
         
         let requestBody: [String: Any] = [
             "api_key": apiKey,
-            "faces_uuids": [faceUUID],
-            "targets": ["all@mynamespace"
-//                "all@part01.wikipedia.org",
-//                "all@part02.wikipedia.org",
-//                "all@part03.wikipedia.org",
-//                "all@part04.wikipedia.org",
-//                "all@part05.wikipedia.org",
-//                "all@part06.wikipedia.org"
+            "faces_uuids": [faceUUID, faceUUID],
+            "action": 0,
+             "parameters": ""
             ]
-        ]
         
         guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBody) else {
             print("Error creating JSON data")
@@ -38,7 +33,7 @@ class Recognize: ObservableObject {
         request.httpBody = jsonData
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response3, error) in
             guard let data = data else {
                 print("Error downloading data")
                 return
@@ -49,12 +44,11 @@ class Recognize: ObservableObject {
             
             let decoder = JSONDecoder()
             
-            if let response2 = try? decoder.decode(Response2.self, from: data){
+            if let response3 = try? decoder.decode(Response3.self, from: data){
                 DispatchQueue.main.async {
-                    self.responses2 = response2
-                    print(self.responses2)
-                    self.recognizeUUID = self.responses2.recognize_uuid!
-                    print(self.recognizeUUID + " UUIDDIDID")
+                    self.responses3 = response3
+                    print(self.responses3)
+                    self.imageBase64 = self.responses3.image_base64!
                     callback()
                 }
             } else {
@@ -63,6 +57,7 @@ class Recognize: ObservableObject {
         }.resume()
     }
 }
-struct Response2: Codable {
-    var recognize_uuid: String?
+struct Response3: Codable {
+    var transform_uuid : String?
+    var image_base64 : String?
 }

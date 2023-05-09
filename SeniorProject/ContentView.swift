@@ -51,10 +51,26 @@ struct ContentView: View {
     @State private var isShowingImagePicker = false
     @State private var selectedImage: UIImage?
     @State var UserUUID : String?
-    @StateObject private var betaface = BetaFace()
-    @StateObject private var recognize = Recognize()
+    @StateObject var betaface = BetaFace()
+    @StateObject var recognize = Recognize()
+    @StateObject var recognizeUUID = RecognizeUUID()
+    @StateObject var transform = Transform()
+    @State var base64String = "base64-encoded-image-string"
+    @State var matchUUID = ""
+    @State var recognizeUUIDStringThing = ""
     var body: some View {
         VStack {
+            if let imageData = Data(base64Encoded: base64String) {
+                        if let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        } else {
+                            Text("Failed to decode image")
+                        }
+                    } else {
+                        Text("Invalid base64 string")
+                    }
             if let image = selectedImage {
                 Image(uiImage: image)
                     .resizable() 
@@ -92,17 +108,34 @@ struct ContentView: View {
         Button(action: {
             print(UserUUID! )
             recognize.getData2(callback: {
-                print(recognize.responses2)
+                recognizeUUIDStringThing = recognize.recognizeUUID
             }, faceUUID: UserUUID!)
-
-
         }) {
             Text(" Recognize")
-
+            Text(recognizeUUIDStringThing)
         }
         .padding()
+        Button(action: {
+            recognizeUUID.getData(callback: {
+                matchUUID = recognizeUUID.match
+                print("matchUUID + " + matchUUID)
+            }, recognizeUUIDString: recognizeUUIDStringThing)
+        }) {
+            Text(" RecognizeUUID")
+            Text(matchUUID)
+        }
+        .padding()
+        
+        Button(action:{
+            transform.getData3(callback: {
+                base64String = transform.imageBase64
+            }, faceUUID: matchUUID)
+        }) {
+            Text("Transform")
+        }
+        
+        
     }
-    
     private func uploadImage() {
         guard let selectedImage = selectedImage else {
             return
