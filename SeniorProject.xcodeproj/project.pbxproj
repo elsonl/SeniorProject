@@ -11,6 +11,8 @@
 		86A5A9062A09F00C00B81CA8 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A9052A09F00C00B81CA8 /* Transform.swift */; };
 		86A5A9082A09F7E500B81CA8 /* RecognizeUUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A9072A09F7E500B81CA8 /* RecognizeUUID.swift */; };
 		86A5A90A2A0AC78600B81CA8 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86A5A9092A0AC78600B81CA8 /* Launch Screen.storyboard */; };
+		86A5A90C2A0B563400B81CA8 /* SearchInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A90B2A0B563400B81CA8 /* SearchInfo.swift */; };
+		86A5A90F2A0B597B00B81CA8 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A5A90E2A0B597B00B81CA8 /* Constants.swift */; };
 		86F3B9932A044181009930C8 /* SeniorProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9922A044181009930C8 /* SeniorProjectApp.swift */; };
 		86F3B9952A044181009930C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3B9942A044181009930C8 /* ContentView.swift */; };
 		86F3B9972A044183009930C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86F3B9962A044183009930C8 /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		86A5A9052A09F00C00B81CA8 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		86A5A9072A09F7E500B81CA8 /* RecognizeUUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizeUUID.swift; sourceTree = "<group>"; };
 		86A5A9092A0AC78600B81CA8 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		86A5A90B2A0B563400B81CA8 /* SearchInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInfo.swift; sourceTree = "<group>"; };
+		86A5A90E2A0B597B00B81CA8 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		86F3B98F2A044181009930C8 /* SeniorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeniorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F3B9922A044181009930C8 /* SeniorProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeniorProjectApp.swift; sourceTree = "<group>"; };
 		86F3B9942A044181009930C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86A5A90D2A0B596C00B81CA8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				86A5A90E2A0B597B00B81CA8 /* Constants.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		86F3B9862A044181009930C8 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				86F3B9922A044181009930C8 /* SeniorProjectApp.swift */,
+				86A5A90D2A0B596C00B81CA8 /* Model */,
 				86F3B9BC2A0441CF009930C8 /* Views */,
 				86F3B9BD2A0441E2009930C8 /* api */,
 				86F3B9962A044183009930C8 /* Assets.xcassets */,
@@ -143,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				86F3B9942A044181009930C8 /* ContentView.swift */,
+				86A5A90B2A0B563400B81CA8 /* SearchInfo.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -289,10 +303,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86A5A90C2A0B563400B81CA8 /* SearchInfo.swift in Sources */,
 				86A5A9042A09C96600B81CA8 /* Recognize.swift in Sources */,
 				86F3B9C62A0546D4009930C8 /* BetaFace.swift in Sources */,
 				86A5A9062A09F00C00B81CA8 /* Transform.swift in Sources */,
 				86F3B9952A044181009930C8 /* ContentView.swift in Sources */,
+				86A5A90F2A0B597B00B81CA8 /* Constants.swift in Sources */,
 				86F3B9932A044181009930C8 /* SeniorProjectApp.swift in Sources */,
 				86A5A9082A09F7E500B81CA8 /* RecognizeUUID.swift in Sources */,
 			);

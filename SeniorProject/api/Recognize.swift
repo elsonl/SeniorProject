@@ -21,7 +21,7 @@ class Recognize: ObservableObject {
             "api_key": apiKey,
             "faces_uuids": [faceUUID],
             "targets": ["all@mynamespace"
-                        ,"name@connie","all@SeniorProject"
+//                        ,"name@connie","all@SeniorProject"
 //                ,"all@part01.wikipedia.org",
 //                "all@part02.wikipedia.org",
 //                "all@part03.wikipedia.org",

@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2023-05-09 at 2.40.01 PM" translatesAutoresizingMaskIntoConstraints="NO" id="yP8-DB-bnS">
-                                <rect key="frame" x="-167" y="161" width="726" height="529"/>
+                                <rect key="frame" x="-153" y="162" width="726" height="529"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" systemColor="placeholderTextColor"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font" scale="medium" weight="medium">
