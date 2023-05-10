@@ -49,7 +49,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 struct ContentView: View {
     @State private var isShowingImagePicker = false
-    @State private var selectedImage: UIImage?
+    @State var selectedImage: UIImage?
     @State var UserUUID : String?
     @StateObject var betaface = BetaFace()
     @StateObject var recognize = Recognize()
@@ -58,6 +58,7 @@ struct ContentView: View {
     @State var base64String = "base64-encoded-image-string"
     @State var matchUUID = ""
     @State var recognizeUUIDStringThing = ""
+    @State var confidenceLevel = 0.0
     
     let backgroundGradient = LinearGradient(
         colors: [Color.G1, Color.G1],
@@ -107,7 +108,7 @@ struct ContentView: View {
                    uploadImage()
                 }, label: {
                     
-                    NavigationLink(destination : SearchInfo(base64String: $base64String).onAppear(){uploadImage()}){
+                    NavigationLink(destination : SearchInfo(base64String: $base64String, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage).onAppear(){uploadImage()}){
 
                         Image(systemName: "magnifyingglass").foregroundColor(Color.red) .font(Font.system(size: 25, weight: .semibold))
                         Text("Search").font(Font.system(size: 20, weight: .bold))
@@ -197,7 +198,7 @@ struct ContentView: View {
                     recognizeUUID.getData(callback: {
                         matchUUID = recognizeUUID.match
                         print("matchUUID + " + matchUUID)
-                        
+                        confidenceLevel = recognizeUUID.confidence
                         // transform
                             transform.getData3(callback: {
                                 base64String = transform.imageBase64

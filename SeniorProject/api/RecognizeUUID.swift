@@ -10,6 +10,7 @@ import SwiftUI
 class RecognizeUUID : ObservableObject{
     @Published var responses4 = Response4()
     @Published var match = ""
+    @Published var confidence = 0.0
     func getData(callback: @escaping () -> Void, recognizeUUIDString: String){
         print(recognizeUUIDString)
         guard let url = URL(string: "https://www.betafaceapi.com/api/v2/recognize?api_key=d45fd466-51e2-4701-8da8-04351c872236&recognize_uuid=\(recognizeUUIDString)") else {
@@ -36,7 +37,8 @@ class RecognizeUUID : ObservableObject{
                 DispatchQueue.main.async{
                     self.responses4 = response4
                     print(self.responses4.results)
-                    self.match = response4.results[0].matches[1].face_uuid!
+                    self.match = response4.results[0].matches[0].face_uuid!
+                    self.confidence = self.responses4.results[0].matches[1].confidence!
                     callback()
                     
                 }
