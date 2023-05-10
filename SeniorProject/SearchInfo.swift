@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct SearchInfo: View {
-    @Binding var base64String : String
+    @Binding var base64StringsArray : [String]
     @Binding var confidenceLevel : Double
     @Binding var selectedImage: UIImage?
+    @Binding var base64Strings : String
+    @Binding var indiciesCount : Int
+    @State var count : Int = 0
+    @Binding var confidencePercentArray: [Double]
     
     let backgroundGradient = LinearGradient(
         colors: [Color.G1, Color.G1],
@@ -19,51 +23,64 @@ struct SearchInfo: View {
     
     var body: some View {
         // Decode the String
-        ZStack{
-            backgroundGradient
-            VStack{
-                HStack{
-                    VStack{
-                        Text("Your Image").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
-                        if let image = selectedImage {
-                            VStack{
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .frame(width: 200.0, height: 200.0)
-                                    .aspectRatio(image.size, contentMode: .fill)
-                                    .border(Color.black, width: 2)
-                            }
-                        } else {
-                            Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
-                        }
-                    }
-                    
-                    VStack{
-                        Text("Results").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
-                        if let imageData = Data(base64Encoded: base64String) {
-                            if let uiImage = UIImage(data: imageData) {
-                                Image(uiImage: uiImage)
-                                    .resizable()
-                                    .frame(width: 200, height: 200)
-                                    .aspectRatio(contentMode: .fit)
+        NavigationView{
+            ZStack{
+                backgroundGradient
+                VStack{
+                    HStack{
+                        VStack{
+                            Text("Your Image").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                            if let image = selectedImage {
+                                VStack{
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .frame(width: 200.0, height: 200.0)
+                                        .aspectRatio(image.size, contentMode: .fit)
+    //                                    .border(Color.black, width: 2)
+                                }
                             } else {
-                                Text("Failed to decode image").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                                Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
                             }
-                        } else {
-                            Text("Invalid base64 string").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                        }
+                        
+                        VStack{
+                            Text("Result: " + String(count + 1) + "/" + String(indiciesCount)).font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                            if let imageData = Data(base64Encoded: base64StringsArray[count]) {
+                                if let uiImage = UIImage(data: imageData) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .frame(width: 200, height: 200)
+                                        .aspectRatio(contentMode: .fit)
+                                } else {
+                                    Text("Failed to decode image").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                                }
+                            } else {
+                                Text("Invalid base64 string").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                            }
                         }
                     }
-                }
-                HStack{
-                    Text("Similarity Confidence: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
-                    Text("\(confidenceLevel * 100, specifier: "%.2f")%").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
-                }
+                    VStack{
+                        Button(action: {
+                            if count < indiciesCount-1{
+                                count += 1
+                            } else {
+                                count = 0
+                            }
+                        }) {
+                            Text("Next").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3).padding().background(Color.black)
+                        }.clipShape(Capsule())
+                        HStack{
+                            Text("Similarity Confidence: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                            Text("\(confidencePercentArray[count] * 100, specifier: "%.2f")%").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                        }
+                    }
 
-    
+        
+                }.ignoresSafeArea()
+                
+                
             }.ignoresSafeArea()
-            
-            
-        }.ignoresSafeArea()
+        }.navigationViewStyle(StackNavigationViewStyle()).navigationBarBackButtonHidden(false)
     }
     
 //    struct SearchInfo_Previews: PreviewProvider {

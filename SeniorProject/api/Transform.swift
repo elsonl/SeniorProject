@@ -4,9 +4,11 @@ import SwiftUI
 class Transform: ObservableObject {
     @Published var responses3 = Response3()
     @Published var imageBase64 : String = ""
+    @Published var imageBase64Array : [String] = []
+    @Published var transformBool : Bool = false
 
     func getData3(callback: @escaping () -> Void, faceUUID: String) {
-        print(faceUUID + " TRANSFORM UUID")
+//        print(faceUUID + " TRANSFORM UUID")
         guard let url = URL(string: "https://www.betafaceapi.com/api/v2/transform") else {
             print("Error creating URL")
             return
@@ -46,9 +48,17 @@ class Transform: ObservableObject {
             
             if let response3 = try? decoder.decode(Response3.self, from: data){
                 DispatchQueue.main.async {
+                    if self.transformBool {
+                        self.imageBase64Array.removeAll()
+                        self.transformBool = false
+                    }
+                    
                     self.responses3 = response3
-                    print(self.responses3)
+//                    print(self.responses3)
                     self.imageBase64 = self.responses3.image_base64!
+                    
+                    
+                    self.imageBase64Array.append(self.responses3.image_base64!)
                     callback()
                 }
             } else {
@@ -56,6 +66,7 @@ class Transform: ObservableObject {
             }
         }.resume()
     }
+    
 }
 struct Response3: Codable {
     var transform_uuid : String?

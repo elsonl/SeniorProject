@@ -4,8 +4,6 @@ import SwiftUI
 class BetaFace: ObservableObject {
     @Published var responses = Response()
     @Published var UUUID : String?
-    @Published var UUIDArray : [String] = []
-    
     
     func getData(callback: @escaping () -> Void,selectedImageURL: URL?) {
         guard let url = URL(string: "https://www.betafaceapi.com/api/v2/media/file") else { 
@@ -42,10 +40,8 @@ class BetaFace: ObservableObject {
             if let response = try? decoder.decode(Response.self, from: data) {
                 DispatchQueue.main.async {
                     self.responses = response
-                    print(self.responses.media)
+//                    print(self.responses.media)
                     self.UUUID = self.responses.media?.faces[0].face_uuid
-                    self.UUIDArray.append(self.UUUID! ?? "nothing here32")
-                    print(self.UUIDArray)
                     callback()
                 }
             } else {
@@ -90,28 +86,28 @@ struct MediaItem: Codable {
     var checksum: String? // hash
     var faces: [Face]
 }
-
+//
 struct Face: Codable {
     var face_uuid: String?
-    var x : Double?
-    var y : Double?
-    var width : Double?
-    var height : Double?
-    var angle : Double?
-    var detection_score : Double?
-    var points : [Point]
-    var tags : [Tag]
+//    var x : Double?
+//    var y : Double?
+//    var width : Double?
+//    var height : Double?
+//    var angle : Double?
+//    var detection_score : Double?
+//    var points : [Point]
+//    var tags : [Tag]
 }
-// 122 points
-struct Point : Codable {
-    var x : Double?
-    var y : Double?
-    var type : Int?
-    var  name : String?
-}
-// 73 tags
-struct Tag : Codable {
-    var name : String?
-    var value : String?
-    var confidence : Double?
-}
+//// 122 points
+//struct Point : Codable {
+//    var x : Double?
+//    var y : Double?
+//    var type : Int?
+//    var  name : String?
+//}
+//// 73 tags
+//struct Tag : Codable {
+//    var name : String?
+//    var value : String?
+//    var confidence : Double?
+//}

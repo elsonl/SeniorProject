@@ -55,10 +55,14 @@ struct ContentView: View {
     @StateObject var recognize = Recognize()
     @StateObject var recognizeUUID = RecognizeUUID()
     @StateObject var transform = Transform()
-    @State var base64String = "base64-encoded-image-string"
+    @State var base64StringsArray : [String] = []
+    @State var base64Strings : String = ""
     @State var matchUUID = ""
     @State var recognizeUUIDStringThing = ""
     @State var confidenceLevel = 0.0
+    @State var confidencePercentArray: [Double] = []
+    @State var matchUUIDArray: [String] = []
+    @State var indiciesCount : Int = 0
     
     let backgroundGradient = LinearGradient(
         colors: [Color.G1, Color.G1],
@@ -77,8 +81,8 @@ struct ContentView: View {
                         Image(uiImage: image)
                             .resizable()
                             .frame(width: 200.0, height: 200.0)
-                            .aspectRatio(image.size, contentMode: .fill)
-                            .border(Color.black, width: 2)
+                            .aspectRatio(image.size, contentMode: .fit)
+//                            .border(Color.black, width: 2)
                         Text("↑ Selected Image ↑").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
                     }
                 } else {
@@ -88,6 +92,11 @@ struct ContentView: View {
                 // Button to select an image
                 Button(action: {
                     isShowingImagePicker = true
+                    base64StringsArray.removeAll()
+                    confidencePercentArray.removeAll()
+                    matchUUIDArray.removeAll()
+                    transform.transformBool = true
+                    
                 }) {
                     
                     Image(systemName: "photo.on.rectangle.angled").foregroundColor(Color.red) .font(Font.system(size: 25, weight: .semibold))
@@ -98,6 +107,10 @@ struct ContentView: View {
                     ImagePicker(sourceType: .photoLibrary) { image in
                         selectedImage = image
                         isShowingImagePicker = false
+                        
+                        base64StringsArray.append("nothign yet")
+                        confidencePercentArray.append(0.00)
+                        indiciesCount = 0
                     }
                 }.background(Color.black
                 ).clipShape(Capsule()).foregroundColor(.G3)
@@ -105,10 +118,13 @@ struct ContentView: View {
                 // Upload/Search Button
 
                 Button(action : {
-                   uploadImage()
+                    print("IM TOTALLY USEFUL")
                 }, label: {
                     
-                    NavigationLink(destination : SearchInfo(base64String: $base64String, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage).onAppear(){uploadImage()}){
+                    NavigationLink(destination : SearchInfo(base64StringsArray: $base64StringsArray, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage, base64Strings: $base64Strings, indiciesCount: $indiciesCount, confidencePercentArray: $confidencePercentArray).onAppear{
+                        uploadImage()
+                        
+                    }){
 
                         Image(systemName: "magnifyingglass").foregroundColor(Color.red) .font(Font.system(size: 25, weight: .semibold))
                         Text("Search").font(Font.system(size: 20, weight: .bold))
@@ -199,10 +215,26 @@ struct ContentView: View {
                         matchUUID = recognizeUUID.match
                         print("matchUUID + " + matchUUID)
                         confidenceLevel = recognizeUUID.confidence
+                        
+                        confidencePercentArray = recognizeUUID.confidenceArray
+                        matchUUIDArray = recognizeUUID.matchArray
+                        indiciesCount = recognizeUUID.indicies
+                        print("INDICIES")
+                        print(indiciesCount)
+//                        print("ARRAYS")
+//                        print(confidencePercentArray)
+//                        print(matchUUIDArray)
                         // transform
+                        for i in confidencePercentArray.indices{
                             transform.getData3(callback: {
-                                base64String = transform.imageBase64
-                            }, faceUUID: matchUUID)
+//                                base64Strings = transform.imageBase64Array[0]
+                                base64StringsArray = transform.imageBase64Array
+//                                print("Array")
+//                                print(base64StringsArray)
+                            }, faceUUID: matchUUIDArray[i])
+                        }
+
+//                        print("Array")
                     }, recognizeUUIDString: recognizeUUIDStringThing)
                 }, faceUUID: UserUUID!)
             }, selectedImageURL: imageURL)
