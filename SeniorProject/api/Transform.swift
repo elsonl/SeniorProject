@@ -41,8 +41,8 @@ class Transform: ObservableObject {
                 return
             }
             
-            print("Data downloaded")
-            print(data)
+//            print("Data downloaded")
+//            print(data)
             
             let decoder = JSONDecoder()
             
@@ -56,7 +56,6 @@ class Transform: ObservableObject {
                     self.responses3 = response3
 //                    print(self.responses3)
                     self.imageBase64 = self.responses3.image_base64!
-                    
                     
                     self.imageBase64Array.append(self.responses3.image_base64!)
                     callback()

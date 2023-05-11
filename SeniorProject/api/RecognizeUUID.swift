@@ -14,8 +14,9 @@ class RecognizeUUID : ObservableObject{
     @Published var confidenceArray: [Double] = []
     @Published var matchArray: [String] = []
     @Published var indicies : Int = 0
+    @Published var personIDArray : [String] = []
     func getData(callback: @escaping () -> Void, recognizeUUIDString: String){
-        print(recognizeUUIDString)
+//        print(recognizeUUIDString)
         guard let url = URL(string: "https://www.betafaceapi.com/api/v2/recognize?api_key=d45fd466-51e2-4701-8da8-04351c872236&recognize_uuid=\(recognizeUUIDString)") else {
             
             print("error creating url")
@@ -40,15 +41,17 @@ class RecognizeUUID : ObservableObject{
                 DispatchQueue.main.async{
                     
                     self.responses4 = response4
-                    print(self.responses4.results)
+//                    print(self.responses4.results)
                     self.match = response4.results[0].matches[0].face_uuid!
                     self.confidence = self.responses4.results[0].matches[1].confidence!
                     self.confidenceArray.removeAll()
                     self.matchArray.removeAll()
+                    self.personIDArray.removeAll()
                     self.indicies = 0
                     for i in self.responses4.results[0].matches.indices{
                         self.confidenceArray.append(self.responses4.results[0].matches[i].confidence!)
                         self.matchArray.append(self.responses4.results[0].matches[i].face_uuid!)
+                        self.personIDArray.append( self.responses4.results[0].matches[i].person_id!)
                         self.indicies += 1
 //                        print("ARRAYS")
 //                        print(self.confidenceArray)

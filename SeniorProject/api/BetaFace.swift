@@ -33,7 +33,7 @@ class BetaFace: ObservableObject {
             }
             
             print("Data downloaded")
-            print(data)
+//            print(data)
             
             let decoder = JSONDecoder()
             

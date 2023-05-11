@@ -20,9 +20,13 @@ class Recognize: ObservableObject {
         let requestBody: [String: Any] = [
             "api_key": apiKey,
             "faces_uuids": [faceUUID],
-            "targets": ["all@mynamespace"
-//                        ,"name@connie","all@SeniorProject"
-//                ,"all@part01.wikipedia.org",
+            "targets": [
+//                "all@celebrities.betaface.com"
+                "all@mynamespace"
+//                        ,"name@connie"
+//                ,"all@SeniorProject"
+//                ,
+//                "all@part01.wikipedia.org",
 //                "all@part02.wikipedia.org",
 //                "all@part03.wikipedia.org",
 //                "all@part04.wikipedia.org",
@@ -46,16 +50,16 @@ class Recognize: ObservableObject {
             }
             
             print("Data downloaded")
-            print(data)
+//            print(data)
             
             let decoder = JSONDecoder()
             
             if let response2 = try? decoder.decode(Response2.self, from: data){
                 DispatchQueue.main.async {
                     self.responses2 = response2
-                    print(self.responses2)
+//                    print(self.responses2)
                     self.recognizeUUID = self.responses2.recognize_uuid!
-                    print(self.recognizeUUID + " UUIDDIDID")
+//                    print(self.recognizeUUID + " UUIDDIDID")
                     callback()
                 }
             } else {

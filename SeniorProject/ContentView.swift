@@ -46,9 +46,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 
-
 struct ContentView: View {
-    @State private var isShowingImagePicker = false
+    @State private var isShowingCameraPicker = false
+    @State private var isShowingLibraryPicker = false
     @State var selectedImage: UIImage?
     @State var UserUUID : String?
     @StateObject var betaface = BetaFace()
@@ -63,7 +63,8 @@ struct ContentView: View {
     @State var confidencePercentArray: [Double] = []
     @State var matchUUIDArray: [String] = []
     @State var indiciesCount : Int = 0
-    
+    @State var personIDArrayThing : [String] = []
+    @State var finish : Bool = false
     let backgroundGradient = LinearGradient(
         colors: [Color.G1, Color.G1],
         startPoint: .top, endPoint: .bottom)
@@ -89,39 +90,72 @@ struct ContentView: View {
                     Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
                 }
 
-                // Button to select an image
-                Button(action: {
-                    isShowingImagePicker = true
-                    base64StringsArray.removeAll()
-                    confidencePercentArray.removeAll()
-                    matchUUIDArray.removeAll()
-                    transform.transformBool = true
-                    
-                }) {
-                    
-                    Image(systemName: "photo.on.rectangle.angled").foregroundColor(Color.red) .font(Font.system(size: 25, weight: .semibold))
-                    Text("Upload Image").font(Font.system(size: 20, weight: .bold))
-                }
-                .padding()
-                .sheet(isPresented: $isShowingImagePicker) {
-                    ImagePicker(sourceType: .photoLibrary) { image in
-                        selectedImage = image
-                        isShowingImagePicker = false
-                        
-                        base64StringsArray.append("nothign yet")
-                        confidencePercentArray.append(0.00)
-                        indiciesCount = 0
+                
+                // Button to take a picture
+                VStack{
+                    Button(action: {
+                        isShowingCameraPicker = true
+                        base64StringsArray.removeAll()
+                        confidencePercentArray.removeAll()
+                        matchUUIDArray.removeAll()
+                        transform.transformBool = true
+                        personIDArrayThing.removeAll()
+                        finish = false
+                    }) {
+                        Image(systemName: "camera").foregroundColor(Color.red).font(Font.system(size: 25, weight: .semibold))
+                        Text("Take Photo").font(Font.system(size: 20, weight: .bold))
                     }
-                }.background(Color.black
-                ).clipShape(Capsule()).foregroundColor(.G3)
+                    .padding()
+                    .sheet(isPresented: $isShowingCameraPicker) {
+                        ImagePicker(sourceType: .camera) { image in
+                            selectedImage = image
+                            isShowingCameraPicker = false
+                            base64StringsArray.append("nothign yet")
+                            confidencePercentArray.append(0.00)
+                            indiciesCount = 0
+                            personIDArrayThing.append("nothing yet")
+                        }
+                    }
+                    .background(Color.black)
+                    .clipShape(Capsule())
+                    .foregroundColor(.G3)
+                    // button to select image
+                    Button(action: {
+                        isShowingLibraryPicker = true
+                        base64StringsArray.removeAll()
+                        confidencePercentArray.removeAll()
+                        matchUUIDArray.removeAll()
+                        transform.transformBool = true
+                        personIDArrayThing.removeAll()
+                        finish = false
+                        
+                    }) {
+                        
+                        Image(systemName: "photo.on.rectangle.angled").foregroundColor(Color.red) .font(Font.system(size: 25, weight: .semibold))
+                        Text("Upload Image").font(Font.system(size: 20, weight: .bold))
+                    }
+                    .padding()
+                    .sheet(isPresented: $isShowingLibraryPicker) {
+                        ImagePicker(sourceType: .photoLibrary) { image in
+                            selectedImage = image
+                            isShowingLibraryPicker = false
+                            
+                            base64StringsArray.append("nothign yet")
+                            confidencePercentArray.append(0.00)
+                            indiciesCount = 0
+                            personIDArrayThing.append("nothing yet")
+                        }
+                    }.background(Color.black
+                    ).clipShape(Capsule()).foregroundColor(.G3)
+                }
 
+                
                 // Upload/Search Button
-
                 Button(action : {
-                    print("IM TOTALLY USEFUL")
+//                    print("IM TOTALLY USEFUL")
                 }, label: {
                     
-                    NavigationLink(destination : SearchInfo(base64StringsArray: $base64StringsArray, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage, base64Strings: $base64Strings, indiciesCount: $indiciesCount, confidencePercentArray: $confidencePercentArray).onAppear{
+                    NavigationLink(destination : SearchInfo(base64StringsArray: $base64StringsArray, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage, base64Strings: $base64Strings, indiciesCount: $indiciesCount, personIDArrayThing: $personIDArrayThing, confidencePercentArray: $confidencePercentArray, finish: $finish).onAppear{
                         uploadImage()
                         
                     }){
@@ -134,52 +168,7 @@ struct ContentView: View {
                 ).clipShape(Capsule()).foregroundColor(.G3)
 
 
-//                // Button to upload the selected image
-//                Button(action: {
-//                    uploadImage()
-//
-//                }) {
-//                    Text("Upload Image")
-//                    Text(UserUUID ?? "Nothing Yet!")
-//                }
-//                .padding()
-
-                // Recodnize image - search against database
-                
-//                Button(action: {
-//                    print(UserUUID! )
-//                    recognize.getData2(callback: {
-//                        recognizeUUIDStringThing = recognize.recognizeUUID
-//                    }, faceUUID: UserUUID!)
-//                }) {
-//                    Text(" Recognize")
-//                    Text(recognizeUUIDStringThing)
-//                }
-//                .padding()
-                
-                // Recognize UUID Button
-//                Button(action: {
-//                    recognizeUUID.getData(callback: {
-//                        matchUUID = recognizeUUID.match
-//                        print("matchUUID + " + matchUUID)
-//                    }, recognizeUUIDString: recognizeUUIDStringThing)
-//                }) {
-//                    Text(" RecognizeUUID")
-//                    Text(matchUUID)
-//                }
-//                .padding()
-                
-                // Transform Button
-//                Button(action:{
-//                    transform.getData3(callback: {
-//                        base64String = transform.imageBase64
-//                    }, faceUUID: matchUUID)
-//                }) {
-//                    Text("Transform")
-//                }
-
-
-            }.ignoresSafeArea()
+ }.ignoresSafeArea()
         }.ignoresSafeArea()
         }.navigationViewStyle(StackNavigationViewStyle())
  
@@ -205,22 +194,32 @@ struct ContentView: View {
             }
 
             betaface.getData(callback: {
-                print("User UUID = " + (betaface.UUUID ?? "nothing"))
+//                print("User UUID = " + (betaface.UUUID ?? "nothing"))
                 UserUUID = betaface.UUUID
                 // recognize
                 recognize.getData2(callback: {
                     recognizeUUIDStringThing = recognize.recognizeUUID
-                // recognizeUUID
+//                 recognizeUUID
                     recognizeUUID.getData(callback: {
                         matchUUID = recognizeUUID.match
-                        print("matchUUID + " + matchUUID)
+//                        print("matchUUID + " + matchUUID)
                         confidenceLevel = recognizeUUID.confidence
                         
                         confidencePercentArray = recognizeUUID.confidenceArray
                         matchUUIDArray = recognizeUUID.matchArray
+                        personIDArrayThing = recognizeUUID.personIDArray
+                        for i in personIDArrayThing.indices{
+                            for people in personIDArrayThing {
+                                let components = personIDArrayThing[i].components(separatedBy: "@")
+                                let name = components.first?.trimmingCharacters(in: .whitespaces)
+                                print(name)
+                                personIDArrayThing[i] = name!
+                                
+                            }
+                        }
                         indiciesCount = recognizeUUID.indicies
-                        print("INDICIES")
-                        print(indiciesCount)
+//                        print("INDICIES")
+//                        print(indiciesCount)
 //                        print("ARRAYS")
 //                        print(confidencePercentArray)
 //                        print(matchUUIDArray)
@@ -231,9 +230,19 @@ struct ContentView: View {
                                 base64StringsArray = transform.imageBase64Array
 //                                print("Array")
 //                                print(base64StringsArray)
+                                
+                                if i == indiciesCount-1 {
+                                    print("Finish Area")
+                                    finish = true
+                                }
                             }, faceUUID: matchUUIDArray[i])
                         }
-
+                      
+                               
+                       
+                            
+                        
+                        
 //                        print("Array")
                     }, recognizeUUIDString: recognizeUUIDStringThing)
                 }, faceUUID: UserUUID!)
@@ -250,5 +259,3 @@ struct ContentView: View {
         }
     }
 }
-
-
