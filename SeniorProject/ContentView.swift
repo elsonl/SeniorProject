@@ -66,7 +66,7 @@ struct ContentView: View {
     @State var personIDArrayThing : [String] = []
     @State var finish : Bool = false
     let backgroundGradient = LinearGradient(
-        colors: [Color.G1, Color.G1],
+        colors: [Color.B1, Color.B1],
         startPoint: .top, endPoint: .bottom)
     
     var body: some View {
@@ -74,20 +74,29 @@ struct ContentView: View {
         ZStack{
             backgroundGradient
             VStack {
-
+                Image("FinderOfFame").resizable().frame(width: 400, height: 75)
+//                Image("FinderFame").resizable().background(Color.B1).clipShape(Circle()).shadow(color: Color.Orangish, radius: 10).overlay(Circle().stroke(Color.Orangish,lineWidth: 3)).frame(width: 175, height: 175).scaledToFit ().frame(alignment: .top).padding()
                 
                 //uploaded image
                 if let image = selectedImage {
                     VStack{
                         Image(uiImage: image)
                             .resizable()
-                            .frame(width: 200.0, height: 200.0)
+                            .frame(width: 150, height: 200)
                             .aspectRatio(image.size, contentMode: .fit)
 //                            .border(Color.black, width: 2)
                         Text("↑ Selected Image ↑").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
                     }
                 } else {
-                    Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                     VStack{
+                        Image("FameFinder")
+                            .resizable()
+                            .frame(width: 150, height: 200)
+                            .aspectRatio(contentMode: .fit)
+//                            .border(Color.black, width: 2)
+                            .opacity(0.0)
+                        Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                    }
                 }
 
                 
@@ -152,11 +161,11 @@ struct ContentView: View {
                 
                 // Upload/Search Button
                 Button(action : {
-//                    print("IM TOTALLY USEFUL")
+
                 }, label: {
                     
                     NavigationLink(destination : SearchInfo(base64StringsArray: $base64StringsArray, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage, base64Strings: $base64Strings, indiciesCount: $indiciesCount, personIDArrayThing: $personIDArrayThing, confidencePercentArray: $confidencePercentArray, finish: $finish).onAppear{
-                        uploadImage()
+                        uploadImage(selectedImage: selectedImage)
                         
                     }){
 
@@ -176,7 +185,7 @@ struct ContentView: View {
         
     }
     
-    private func uploadImage() {
+    private func uploadImage(selectedImage: UIImage?) {
         guard let selectedImage = selectedImage else {
             return
         }
@@ -209,13 +218,13 @@ struct ContentView: View {
                         matchUUIDArray = recognizeUUID.matchArray
                         personIDArrayThing = recognizeUUID.personIDArray
                         for i in personIDArrayThing.indices{
-                            for people in personIDArrayThing {
+                           
                                 let components = personIDArrayThing[i].components(separatedBy: "@")
                                 let name = components.first?.trimmingCharacters(in: .whitespaces)
                                 print(name)
                                 personIDArrayThing[i] = name!
                                 
-                            }
+                            
                         }
                         indiciesCount = recognizeUUID.indicies
 //                        print("INDICIES")
