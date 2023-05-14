@@ -22,8 +22,9 @@ class Recognize: ObservableObject {
             "faces_uuids": [faceUUID],
             "targets": [
 //                "all@celebrities.betaface.com"
-                "all@mynamespace"
-//                        ,"name@connie"
+//                "all@mynamespace"
+//                "test@test1234567890",
+                "all@personSeniorProject"
 //                ,"all@SeniorProject"
 //                ,
 //                "all@part01.wikipedia.org",

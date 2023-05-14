@@ -56,8 +56,8 @@ class Transform: ObservableObject {
                     self.responses3 = response3
 //                    print(self.responses3)
                     self.imageBase64 = self.responses3.image_base64!
-                    
                     self.imageBase64Array.append(self.responses3.image_base64!)
+//                    print(faceUUID + " TRANSFORM UUID2")
                     callback()
                 }
             } else {

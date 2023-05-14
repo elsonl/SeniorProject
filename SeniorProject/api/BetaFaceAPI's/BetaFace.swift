@@ -31,7 +31,7 @@ class BetaFace: ObservableObject {
                 print("Error downloading data")
                 return
             }
-            
+          
             print("Data downloaded")
 //            print(data)
             
@@ -40,7 +40,7 @@ class BetaFace: ObservableObject {
             if let response = try? decoder.decode(Response.self, from: data) {
                 DispatchQueue.main.async {
                     self.responses = response
-//                    print(self.responses.media)
+                    print(self.responses.media)
                     self.UUUID = self.responses.media?.faces[0].face_uuid
                     callback()
                 }
