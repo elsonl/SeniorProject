@@ -279,9 +279,14 @@ struct ContentView: View {
         }
 
         transform.getData3(callback: {
-            if index == indiciesCount - 1 {
+            if index == indiciesCount-1 {
                         print("Finish Area")
-                
+    
+                finish = true
+                    }
+
+            // gets celeb information
+            ninjaCeleb.getData5(callback: {
                 netWorthArray = ninjaCeleb.netWorth
                 
                 base64StringsArray = transform.imageBase64Array
@@ -292,13 +297,7 @@ struct ContentView: View {
                 birthdayArray = ninjaCeleb.birthday
                 ageArray = ninjaCeleb.age
                 isAliveArray = ninjaCeleb.isAlive
-                finish = true
-                    }
 
-            // gets celeb information
-            ninjaCeleb.getData5(callback: {
-                
-                
             }, personName: personIDArrayThing[index])
 //            print("Array")
             processTransformData(index: index + 1)

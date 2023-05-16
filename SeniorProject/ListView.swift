@@ -28,7 +28,7 @@ struct ListView: View {
                 Text("Net Worth: $\(netWorthArray[count])")
                 Text("Gender: \(genderArray[count])")
                 Text("Occupation: \(occupationArray[count])")
-                Text("Height: \(heightArray[count], specifier: "%.2f")%")
+                Text("Height: \(heightArray[count], specifier: "%.2f")m")
                
                 Text("Birthday: \(birthdayArray[count])")
                 Text("Age: \(ageArray[count])")

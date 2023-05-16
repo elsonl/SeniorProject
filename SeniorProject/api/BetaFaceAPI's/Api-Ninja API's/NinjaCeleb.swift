@@ -30,10 +30,20 @@ class NinjaCeleb : ObservableObject{
                 return
             }
 //            print(String(data: data, encoding: .utf8)!)
-            print("DATA")
-            print(data)
+//            print("DATA")
+//            print(data)
             print("data downloaded")
-            
+            if self.ninjaBool {
+                self.netWorth.removeAll()
+                self.gender.removeAll()
+                self.occupation.removeAll()
+                self.height.removeAll()
+                self.birthday.removeAll()
+                self.age.removeAll()
+                self.isAlive.removeAll()
+                print("ALL REMOVEED")
+                self.ninjaBool = false
+            }
             if data.count == 2{
                 DispatchQueue.main.async {
                     self.responses5 = Response5()
@@ -53,19 +63,10 @@ class NinjaCeleb : ObservableObject{
                 let responseArray = try JSONDecoder().decode([Response5].self, from: data)
                 DispatchQueue.main.async {
                 if let response = responseArray.first {
-                    if self.ninjaBool {
-                        self.netWorth.removeAll()
-                        self.gender.removeAll()
-                        self.occupation.removeAll()
-                        self.height.removeAll()
-                        self.birthday.removeAll()
-                        self.age.removeAll()
-                        self.isAlive.removeAll()
-                        print("ALL REMOVEED")
-                        self.ninjaBool = false
-                    }
+            
+                  
                     self.responses5 = response
-                                       print(self.responses5)
+//                                       print(self.responses5)
                     
                     
                     self.netWorth.append(self.responses5.net_worth ?? -1)
@@ -75,22 +76,6 @@ class NinjaCeleb : ObservableObject{
                     self.birthday.append(self.responses5.birthday ?? "Not Availible")
                     self.age.append(self.responses5.age ?? -1)
                     self.isAlive.append(self.responses5.is_alive ?? false)
-                    
-//                    if self.responses5.occupation?.isEmpty{
-//                        DispatchQueue.main.async {
-//                            // Assign default values when response is empty or nil
-//                            self.responses5 = Response5()
-//                            self.netWorth.append(-1)
-//                            self.gender.append("Not Available")
-//                            self.occupation.append("Default Occupation")
-//                            self.height.append(-1.0)
-//                            self.birthday.append("Not Available")
-//                            self.age.append(-1)
-//                            self.isAlive.append(false)
-//
-//                            callback()
-//                        }
-//                    }
                     
                     callback()
                 }
