@@ -25,7 +25,9 @@ struct SearchInfo: View {
     @Binding var heightArray : [Double]
     @Binding var birthdayArray : [String]
     @Binding var ageArray : [Int]
-    @Binding var isAliveArray : [Bool]
+    @Binding var isAliveArray : [String]
+    
+    @Binding var originalFace : String
     
     @State var toView : Bool = false //<-------TURN TO FALSE/<-------TURN TO FALSE
 //    <-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE/<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE/<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE
@@ -42,24 +44,26 @@ struct SearchInfo: View {
             if toView {
                 ZStack{
                     backgroundGradient
-                    VStack{
+//                    VStack{
                         
                         
                         //Back,Next,Name,Similarity
-                        VStack{
+                        ZStack{
                             VStack{
                                 HStack{
                                     VStack{
-                                        Text("Your Image").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
-                                        if let image = selectedImage {
-                                            VStack{
-                                                Image(uiImage: image)
+                                        Text("Your Image: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
+                                        if let OGimage = Data(base64Encoded: originalFace) {
+                                            if let OGFace = UIImage(data: OGimage) {
+                                                Image(uiImage: OGFace)
                                                     .resizable()
-                                                    .frame(width: 150, height: 200.0)
-                                                    .aspectRatio(image.size, contentMode: .fit)
+                                                    .scaledToFit()
+                                                    .frame(width: 150, height: 200)
+                                            } else {
+                                                Text("Failed to decode image").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
                                             }
                                         } else {
-                                            Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
+                                            Text("Invalid base64 string").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
                                         }
                                     }
                                     
@@ -69,8 +73,8 @@ struct SearchInfo: View {
                                             if let uiImage = UIImage(data: imageData) {
                                                 Image(uiImage: uiImage)
                                                     .resizable()
+                                                    .scaledToFit()
                                                     .frame(width: 150, height: 200)
-                                                    .aspectRatio(contentMode: .fit)
                                             } else {
                                                 Text("Failed to decode image").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
                                             }
@@ -106,14 +110,20 @@ struct SearchInfo: View {
                                     Text("Similarity Confidence: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
                                     Text("\(confidencePercentArray[count] * 100, specifier: "%.2f")%").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
                                 }
-                            }.offset(y: 150)
+                            }.offset(y: -200)
                             
-                            ListView(netWorthArray: $netWorthArray, genderArray: $genderArray, occupationArray: $occupationArray, heightArray: $heightArray, birthdayArray: $birthdayArray, ageArray: $ageArray, isAliveArray: $isAliveArray, count: $count, personIDArrayThing: $personIDArrayThing).frame( height: 350, alignment: .bottom).ignoresSafeArea().navigationTitle("Results").navigationBarTitleDisplayMode(.inline).ignoresSafeArea().offset(y: 150)
+                            
+                            
+                            
+                            ListView(netWorthArray: $netWorthArray, genderArray: $genderArray, occupationArray: $occupationArray, heightArray: $heightArray, birthdayArray: $birthdayArray, ageArray: $ageArray, isAliveArray: $isAliveArray, count: $count, personIDArrayThing: $personIDArrayThing).ignoresSafeArea().frame( width: 375, height: 415)
+//                                .navigationTitle("Results")
+                                
+                                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous)).offset(y:225)
                         }
                         
                         
                         
-                    }.ignoresSafeArea()
+//                    }.ignoresSafeArea()
                 }.ignoresSafeArea()
             } else {
                 Loading_Screen(toView: $toView, finish: $finish)
@@ -129,7 +139,7 @@ struct SearchInfo: View {
                     .font(Font.system(size: 20, weight: .bold))
                 Text("Back")  .foregroundColor(.Orangish)
                     .font(Font.system(size: 20, weight: .bold))
-            })
+            }.offset(y: -35))
       
     }
     
@@ -141,7 +151,7 @@ struct SearchInfo: View {
                        heightArray: .constant([00.000000]),
                        birthdayArray: .constant(["Birthday"]),
                        ageArray: .constant([00000000]),
-                       isAliveArray: .constant([true]))
+                       isAliveArray: .constant(["true"]), originalFace: .constant(" "))
         }
     }
 }

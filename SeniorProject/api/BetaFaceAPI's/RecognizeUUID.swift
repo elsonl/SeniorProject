@@ -15,6 +15,7 @@ class RecognizeUUID : ObservableObject{
     @Published var matchArray: [String] = []
     @Published var indicies : Int = 0
     @Published var personIDArray : [String] = []
+    @Published var OGFace : String = ""
     func getData(callback: @escaping () -> Void, recognizeUUIDString: String){
 //        print(recognizeUUIDString)
         guard let url = URL(string: "https://www.betafaceapi.com/api/v2/recognize?api_key=d45fd466-51e2-4701-8da8-04351c872236&recognize_uuid=\(recognizeUUIDString)") else {
@@ -48,6 +49,7 @@ class RecognizeUUID : ObservableObject{
                     self.matchArray.removeAll()
                     self.personIDArray.removeAll()
                     self.indicies = 0
+                    self.OGFace = self.responses4.results[0].face_uuid!
                     for i in self.responses4.results[0].matches.indices{
                         self.confidenceArray.append(self.responses4.results[0].matches[i].confidence!)
                         self.matchArray.append(self.responses4.results[0].matches[i].face_uuid!)

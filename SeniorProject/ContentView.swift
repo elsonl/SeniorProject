@@ -74,7 +74,9 @@ struct ContentView: View {
     @State var heightArray : [Double] = []
     @State var birthdayArray : [String] = []
     @State var ageArray : [Int] = []
-    @State var isAliveArray : [Bool] = []
+    @State var isAliveArray : [String] = []
+    
+    @State var originalFace : String = ""
     
     @State var count : Int = 0
     let backgroundGradient = LinearGradient(
@@ -88,15 +90,16 @@ struct ContentView: View {
             VStack{
 //                Image("FinderOfFame").resizable().frame(width: 400, height: 75).offset(y: -30)
                 VStack {
-                    Image("FinderFame").resizable().background(Color.B1).clipShape(Circle()).shadow(color: Color.Orangish, radius: 10).overlay(Circle().stroke(Color.Orangish,lineWidth: 3)).frame(width: 175, height: 175).scaledToFit ().frame(alignment: .top).offset(y: 40)
+                    Image("FinderFame").resizable().background(Color.B1).clipShape(Circle()).shadow(color: Color.Orangish, radius: 10).overlay(Circle().stroke(Color.Orangish,lineWidth: 3)).frame(width: 175, height: 175).scaledToFit ().frame(alignment: .top)
                     
                     //uploaded image
                     if let image = selectedImage {
                         VStack{
                             Image(uiImage: image)
                                 .resizable()
+                                .scaledToFit()
                                 .frame(width: 250, height: 300)
-                                .aspectRatio(image.size, contentMode: .fit)
+//                                .aspectRatio(image.size, contentMode: .fit)
                             //                            .border(Color.black, width: 2)
                             Text("↑ Selected Image ↑").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
                         }
@@ -179,7 +182,7 @@ struct ContentView: View {
                         
                     }, label: {
                         
-                        NavigationLink(destination : SearchInfo(base64StringsArray: $base64StringsArray, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage, base64Strings: $base64Strings, indiciesCount: $indiciesCount, personIDArrayThing: $personIDArrayThing, count: $count, confidencePercentArray: $confidencePercentArray, finish: $finish, netWorthArray: $netWorthArray, genderArray: $genderArray, occupationArray: $occupationArray, heightArray: $heightArray, birthdayArray: $birthdayArray, ageArray: $ageArray, isAliveArray: $isAliveArray).onAppear{
+                        NavigationLink(destination : SearchInfo(base64StringsArray: $base64StringsArray, confidenceLevel: $confidenceLevel, selectedImage: $selectedImage, base64Strings: $base64Strings, indiciesCount: $indiciesCount, personIDArrayThing: $personIDArrayThing, count: $count, confidencePercentArray: $confidencePercentArray, finish: $finish, netWorthArray: $netWorthArray, genderArray: $genderArray, occupationArray: $occupationArray, heightArray: $heightArray, birthdayArray: $birthdayArray, ageArray: $ageArray, isAliveArray: $isAliveArray, originalFace: $originalFace).onAppear{
                             
                                 netWorthArray.append(0)
                                 genderArray.append("No Result")
@@ -187,7 +190,7 @@ struct ContentView: View {
                                 heightArray.append(0.0)
                                 birthdayArray.append("No Result")
                                 ageArray.append(0)
-                                isAliveArray.append(false)
+                                isAliveArray.append(String(false))
                             
                             uploadImage(selectedImage: selectedImage)
                             
@@ -257,6 +260,13 @@ struct ContentView: View {
 //                        print(personIDArrayThing)
                         
                         // Calls Transform.GetData
+                        
+                        originalFace = recognizeUUID.OGFace
+                        transform.getData3(callback: {
+                            originalFace = transform.responses3.image_base64!
+                            transform.transformBool = true
+                        }, faceUUID: originalFace)
+                        
                         processTransformData(index: 0)
                         
                         

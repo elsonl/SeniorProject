@@ -4,6 +4,7 @@ import SwiftUI
 class BetaFace: ObservableObject {
     @Published var responses = Response()
     @Published var UUUID : String?
+
     
     func getData(callback: @escaping () -> Void,selectedImageURL: URL?) {
         guard let url = URL(string: "https://www.betafaceapi.com/api/v2/media/file") else { 
@@ -42,6 +43,7 @@ class BetaFace: ObservableObject {
                     self.responses = response
                     print(self.responses.media)
                     self.UUUID = self.responses.media?.faces[0].face_uuid
+                    
                     callback()
                 }
             } else {

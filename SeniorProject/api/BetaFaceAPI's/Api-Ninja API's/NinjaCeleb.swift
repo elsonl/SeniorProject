@@ -8,7 +8,7 @@ class NinjaCeleb : ObservableObject{
     @Published var height : [Double] = []
     @Published var birthday : [String] = []
     @Published var age : [Int] = []
-    @Published var isAlive : [Bool] = []
+    @Published var isAlive : [String] = []
     @Published var cName : [String] = []
     @Published var ninjaBool = false
     
@@ -34,15 +34,17 @@ class NinjaCeleb : ObservableObject{
 //            print(data)
             print("data downloaded")
             if self.ninjaBool {
-                self.netWorth.removeAll()
-                self.gender.removeAll()
-                self.occupation.removeAll()
-                self.height.removeAll()
-                self.birthday.removeAll()
-                self.age.removeAll()
-                self.isAlive.removeAll()
-                print("ALL REMOVEED")
-                self.ninjaBool = false
+                DispatchQueue.main.async {
+                    self.netWorth.removeAll()
+                    self.gender.removeAll()
+                    self.occupation.removeAll()
+                    self.height.removeAll()
+                    self.birthday.removeAll()
+                    self.age.removeAll()
+                    self.isAlive.removeAll()
+                    print("ALL REMOVEED")
+                    self.ninjaBool = false
+                }
             }
             if data.count == 2{
                 DispatchQueue.main.async {
@@ -53,7 +55,7 @@ class NinjaCeleb : ObservableObject{
                     self.height.append(-1.0)
                     self.birthday.append("Not Available")
                     self.age.append(-1)
-                    self.isAlive.append(false)
+                    self.isAlive.append(String(" "))
 
                     callback()
                 }
@@ -75,7 +77,7 @@ class NinjaCeleb : ObservableObject{
                     self.height.append(self.responses5.height ?? -1.0)
                     self.birthday.append(self.responses5.birthday ?? "Not Availible")
                     self.age.append(self.responses5.age ?? -1)
-                    self.isAlive.append(self.responses5.is_alive ?? false)
+                    self.isAlive.append(String(self.responses5.is_alive!))
                     
                     callback()
                 }
