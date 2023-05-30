@@ -21,6 +21,8 @@ struct ListView: View {
     @Binding var count : Int
     @Binding var personIDArrayThing : [String]
     
+    @State var occupationCount : Int = 0
+    
     @State var tomHollandOccupation : [String] = ["film_director",
                                                   "actor",
                                                   "screenwriter",
@@ -29,8 +31,11 @@ struct ListView: View {
                                                   "television_producer"]
     
     let backgroundGradient = LinearGradient(
-        colors: [Color.B1, Color.Orangish],
-        startPoint: .top, endPoint: .bottom)
+        colors: [Color.G1, Color.Orangish],
+        startPoint: .bottom, endPoint: .top)
+   
+
+
 
    
     var body: some View {
@@ -38,72 +43,145 @@ struct ListView: View {
 //            ZStack{
 //                backgroundGradient
             List{
+                
+                //Constant for tom holland bc the api is stupid
                 if personIDArrayThing[count] == "Tom Holland"{
-                    Text("Name: \(personIDArrayThing[count])")
-                        .listRowBackground(Color.G3)
+                    HStack{
+                        Text("Name: \(personIDArrayThing[count])")
+                            .listRowBackground(Color.clear)
+                        Spacer()
+                        Link(destination: URL(string: "https://en.wikipedia.org/wiki/\(personIDArrayThing[count].replacingOccurrences(of: " ", with: "_"))")!) {
+                            Image(systemName: "link")
+                                .frame(width: 32, height: 32)
+                                .background(Color.blue)
+                                .mask(Circle())
+                                .foregroundColor(.white)
+                        }
+                    }.listRowBackground(Color.clear)
 
                     Text("Net Worth: $15,000,000")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
                     Text("Gender: Male")
-                        .listRowBackground(Color.G3)
-                    Text("Occupation: \(tomHollandOccupation[count].capitalized)")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
                     Text("Height: Not Availible")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
                     
                     Text("Birthday: 1996-06-01")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
                     Text("Age: 26")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
                     Text("Status: Alive")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
                 } else {
-                    Text("Name: \(personIDArrayThing[count])")
-                        .listRowBackground(Color.G3)
+                    
+                    // Default
+                    
+                    // name
+                    HStack{
+                        Text("Name: \(personIDArrayThing[count])")
+                            .listRowBackground(Color.clear)
+                        Spacer()
+                        Link(destination: URL(string: "https://en.wikipedia.org/wiki/\(personIDArrayThing[count].replacingOccurrences(of: " ", with: "_"))")!) {
+                            Image(systemName: "link")
+                                .frame(width: 32, height: 32)
+                                .background(Color.blue)
+                                .mask(Circle())
+                                .foregroundColor(.white)
+                        }
+                    }.listRowBackground(Color.clear)
                     
                     if netWorthArray[count] == -1{
                         Text("Net Worth: Not Available")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     } else {
                         Text("Net Worth: $\(netWorthArray[count])")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     }
+                    
+                    // Gender
                     Text("Gender: \(genderArray[count].capitalized)")
-                        .listRowBackground(Color.G3)
-                    Text("Occupation: \(occupationArray[count].capitalized)")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
+                    
+                    // Occupation
+//                    HStack{
+//                        Text("Occupation: \(occupationArray[occupationCount])")
+//                        Text("Occupation: \(occupationArray[count].capitalized)")
+//
+//
+//                        Spacer()
+//
+//                        Button(action: {
+//                            print(count)
+////                            print(occupationArray)
+//                            if occupationCount > 0{
+//                                occupationCount -= 1
+//                            } else {
+//                                occupationCount = occupationArray.count-1
+//                            }
+//                        }){
+//                            Image(systemName: "chevron.left").foregroundColor(.white)
+//                        }
+//                        Button(action: {
+//                            print(count)
+////                            print(occupationArray)
+//
+//                            if occupationCount < occupationArray.count-1{
+//                                print("123")
+//                                occupationCount += 1
+//                            } else {
+//                                occupationCount = 0
+//                                print("321")
+//                            }
+//
+//                        }){
+//                            Image(systemName: "chevron.right").foregroundColor(.white)
+//                        }
+//
+//                    }.listRowBackground(Color.clear)
+                    
+                    
+                    // height
                     if (heightArray[count] == -1.00){
                         Text("Height: Not Availible")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                         
                     } else {
                         Text("Height: \(heightArray[count], specifier: "%.2f")m")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     }
                     
+                    // Birthday
                     Text("Birthday: \(birthdayArray[count])")
-                        .listRowBackground(Color.G3)
+                        .listRowBackground(Color.clear)
+                    
+                    // Age
                     if(ageArray[count] == -1){
                         Text("Age: Not Availible")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     } else {
                         Text("Age: \(ageArray[count])")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     }
+                
+                    // Alivability
                     if (isAliveArray[count] == " " || isAliveArray[count] == "nil"){
                         Text("Status: Not Availible")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     } else if isAliveArray[count] == "true"{
                         Text("Status: Alive")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     } else {
                         Text("Status: Dead")
-                            .listRowBackground(Color.G3)
+                            .listRowBackground(Color.clear)
                     }
+                
+                       
                 }
                 
-            }.background( backgroundGradient).ignoresSafeArea().scrollContentBackground(.hidden)
-
+            }.background(.clear)
+        
+            .scrollContentBackground(.hidden)
+        
 
             
 //        }

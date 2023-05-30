@@ -80,7 +80,7 @@ struct ContentView: View {
     
     @State var count : Int = 0
     let backgroundGradient = LinearGradient(
-        colors: [Color.B1, Color.B1],
+        colors: [Color.red, Color.red],
         startPoint: .top, endPoint: .bottom)
     
     var body: some View {
@@ -90,18 +90,19 @@ struct ContentView: View {
             VStack{
 //                Image("FinderOfFame").resizable().frame(width: 400, height: 75).offset(y: -30)
                 VStack {
-                    Image("FinderFame").resizable().background(Color.B1).clipShape(Circle()).shadow(color: Color.Orangish, radius: 10).overlay(Circle().stroke(Color.Orangish,lineWidth: 3)).frame(width: 175, height: 175).scaledToFit ().frame(alignment: .top)
-                    
+                    Image("FinderFame").resizable().background(Color.B1).clipShape(Rectangle()).shadow(color: Color.G3, radius: 14).overlay(Rectangle().stroke(Color.white,lineWidth: 0)).frame(width: 210, height: 210).scaledToFit ().frame(alignment: .top)
+                        .padding()
+                   
                     //uploaded image
                     if let image = selectedImage {
                         VStack{
                             Image(uiImage: image)
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 250, height: 300)
+                                .frame(width: 250, height: 300).shadow(color: Color.G3, radius: 15)
 //                                .aspectRatio(image.size, contentMode: .fit)
                             //                            .border(Color.black, width: 2)
-                            Text("↑ Selected Image ↑").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                                .padding()
                         }
                     } else {
                         VStack{
@@ -111,12 +112,13 @@ struct ContentView: View {
                                 .aspectRatio(contentMode: .fit)
                             //                            .border(Color.black, width: 2)
                                 .opacity(0.0)
-                            Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                            Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(Color.white)
                         }
                     }
                     
                     
                     // Button to take a picture
+                       
                     VStack{
                         Button(action: {
                             isShowingCameraPicker = true

@@ -33,8 +33,12 @@ struct SearchInfo: View {
 //    <-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE/<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE/<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE//<-------TURN TO FALSE
     
     
+//    let backgroundGradient = LinearGradient(
+//        colors: [Color.G1, Color.G2],
+//        startPoint: .top, endPoint: .bottom)
+    
     let backgroundGradient = LinearGradient(
-        colors: [Color.G1, Color.G2],
+        colors: [Color.G1, Color.G3],
         startPoint: .top, endPoint: .bottom)
 
     
@@ -52,7 +56,7 @@ struct SearchInfo: View {
                             VStack{
                                 HStack{
                                     VStack{
-                                        Text("Your Image: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
+                                        Text("Your Image: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white)
                                         if let OGimage = Data(base64Encoded: originalFace) {
                                             if let OGFace = UIImage(data: OGimage) {
                                                 Image(uiImage: OGFace)
@@ -68,7 +72,7 @@ struct SearchInfo: View {
                                     }
                                     
                                     VStack{
-                                        Text("Result: " + String(count + 1) + "/" + String(indiciesCount)).font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
+                                        Text("Result: " + String(count + 1) + "/" + String(indiciesCount)).font(Font.system(size: 20, weight: .bold)).foregroundColor(.white)
                                         if let imageData = Data(base64Encoded: base64StringsArray[count]) {
                                             if let uiImage = UIImage(data: imageData) {
                                                 Image(uiImage: uiImage)
@@ -91,7 +95,7 @@ struct SearchInfo: View {
                                             count = indiciesCount - 1
                                         }
                                     }) {
-                                        Text("Back").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish).padding().background(Color.B1)
+                                        Text("Back").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white).padding().background(Color.black)
                                     }.clipShape(Capsule()).padding()
                                     
                                     Button(action: {
@@ -101,24 +105,26 @@ struct SearchInfo: View {
                                             count = 0
                                         }
                                     }) {
-                                        Text("Next").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish).padding().background(Color.B1)
+                                        Text("Next").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white).padding().background(Color.black)
                                     }.clipShape(Capsule()).padding()
                                 }
                                 
-                                Text(personIDArrayThing[count]).font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
+                                Text(personIDArrayThing[count]).font(Font.system(size: 20, weight: .bold)).foregroundColor(.white)
                                 HStack{
-                                    Text("Similarity Confidence: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
-                                    Text("\(confidencePercentArray[count] * 100, specifier: "%.2f")%").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish)
+                                    Text("Similarity Confidence: ").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white)
+                                    Text("\(confidencePercentArray[count] * 100, specifier: "%.2f")%").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white)
                                 }
-                            }.offset(y: -200)
+                            }.offset(y: -150)
                             
                             
                             
                             
-                            ListView(netWorthArray: $netWorthArray, genderArray: $genderArray, occupationArray: $occupationArray, heightArray: $heightArray, birthdayArray: $birthdayArray, ageArray: $ageArray, isAliveArray: $isAliveArray, count: $count, personIDArrayThing: $personIDArrayThing).ignoresSafeArea().frame( width: 375, height: 415)
+                            ListView(netWorthArray: $netWorthArray, genderArray: $genderArray, occupationArray: $occupationArray, heightArray: $heightArray, birthdayArray: $birthdayArray, ageArray: $ageArray, isAliveArray: $isAliveArray, count: $count, personIDArrayThing: $personIDArrayThing).ignoresSafeArea().frame( width: 360, height: 375)
+                                .offset(y:250)
+                            RoundedRectangle(cornerRadius: 25, style: .continuous).stroke(Color.Orangish,lineWidth: 3).frame(width: 330, height: 340).offset(y:250)
 //                                .navigationTitle("Results")
                                 
-                                .clipShape(RoundedRectangle(cornerRadius: 25, style: .continuous)).offset(y:225)
+                                
                         }
                         
                         
@@ -139,7 +145,7 @@ struct SearchInfo: View {
                     .font(Font.system(size: 20, weight: .bold))
                 Text("Back")  .foregroundColor(.Orangish)
                     .font(Font.system(size: 20, weight: .bold))
-            }.offset(y: -35))
+            })
       
     }
     

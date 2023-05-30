@@ -21,18 +21,8 @@ class Recognize: ObservableObject {
             "api_key": apiKey,
             "faces_uuids": [faceUUID],
             "targets": [
-//                "all@celebrities.betaface.com"
-//                "all@mynamespace"
-//                "test@test1234567890",
+
                 "all@personSeniorProject"
-//                ,"all@SeniorProject"
-//                ,
-//                "all@part01.wikipedia.org",
-//                "all@part02.wikipedia.org",
-//                "all@part03.wikipedia.org",
-//                "all@part04.wikipedia.org",
-//                "all@part05.wikipedia.org",
-//                "all@part06.wikipedia.org"
             ]
         ]
         

@@ -31,7 +31,7 @@ struct Loading_Screen: View {
     @State var colorArray : [Color] = [Color.black, Color.red,Color.green, Color.yellow]
     
     let backgroundGradient = LinearGradient(
-        colors: [Color.B1, Color.Orangish],
+        colors: [Color.Orangish, Color.G3],
         startPoint: .top, endPoint: .bottom)
     var body: some View {
         ZStack{
@@ -41,8 +41,8 @@ struct Loading_Screen: View {
                 VStack{
                     Text("Rock Paper Scissors!").font(Font.system(size: 28, weight: .bold)).foregroundColor(Color.black) .padding([.top], 80)
                     HStack{
-                        Text("Your Score = \(userPoints)            ").font(Font.system(size: 18, weight: .bold)).foregroundColor(.G3)
-                        Text("CPU Score = \(computerPoints)").font(Font.system(size: 18, weight: .bold)).foregroundColor(.G3)
+                        Text("Your Score = \(userPoints)            ").font(Font.system(size: 18, weight: .bold)).foregroundColor(.black)
+                        Text("CPU Score = \(computerPoints)").font(Font.system(size: 18, weight: .bold)).foregroundColor(.black)
                     }.padding()
                     
                     Text("CPU").font(Font.system(size: 24, weight: .heavy)).foregroundColor(.G3)
@@ -84,9 +84,9 @@ struct Loading_Screen: View {
                     }
                     
                     
-                }.padding()
+                }.padding().padding()
                     VStack{
-                        Text("Results:").font(Font.system(size: 16, weight: .bold)).foregroundColor(.G3)
+                        Text("Results:").font(Font.system(size: 16, weight: .bold)).foregroundColor(.black)
                         Text(results[resultCount]).font(Font.system(size: 20, weight: .bold)).foregroundColor(Color.white)
                     }
                 Button(action:{
@@ -148,7 +148,7 @@ struct Loading_Screen: View {
                     }
                     
                 }){
-                    Text("Play").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3).padding().background(Color.B1).clipShape(Capsule())
+                    Text("Play").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish).padding().background(Color.black).clipShape(Capsule())
                 }
                 }.padding()
             
@@ -156,16 +156,16 @@ struct Loading_Screen: View {
                 
                 
                 if finish {
-                    Text("Results are ready:").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3)
+                    Text("Results are ready:").font(Font.system(size: 20, weight: .bold)).foregroundColor(.black)
                     Button(action: {
                         toView.toggle()
                     }) {
                         
-                        Text("To Results").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3).padding().background(Color.black).clipShape(Capsule())
+                        Text("To Results").font(Font.system(size: 20, weight: .bold)).foregroundColor(.Orangish).padding().background(Color.black).clipShape(Capsule())
                         
                     }
                 }else{
-                    Text("Results are loading...").font(Font.system(size: 20, weight: .bold)).foregroundColor(.G3).padding().padding()
+                    Text("Results are loading...").font(Font.system(size: 20, weight: .bold)).foregroundColor(.black).padding().padding()
                 }
                 
                 

@@ -73,11 +73,12 @@ class NinjaCeleb : ObservableObject{
                     
                     self.netWorth.append(self.responses5.net_worth ?? -1)
                     self.gender.append(self.responses5.gender ?? "Not Availible")
-                    self.occupation.append(contentsOf: self.responses5.occupation ?? ["Not Availible"])
+//                    self.occupation.append(contentsOf: self.responses5.occupation!)
                     self.height.append(self.responses5.height ?? -1.0)
                     self.birthday.append(self.responses5.birthday ?? "Not Availible")
                     self.age.append(self.responses5.age ?? -1)
-                    self.isAlive.append(String(self.responses5.is_alive!))
+                        self.isAlive.append(String(self.responses5.is_alive ?? false))
+                  
                     
                     callback()
                 }
