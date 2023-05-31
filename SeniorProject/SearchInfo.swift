@@ -47,7 +47,8 @@ struct SearchInfo: View {
         NavigationView{
             if toView {
                 ZStack{
-                    backgroundGradient
+//                    backgroundGradient
+                    Image("BackGround").resizable().aspectRatio(contentMode: .fill) .frame(minWidth: 0, maxWidth: .infinity).edgesIgnoringSafeArea(.all).rotationEffect(.degrees(180))
 //                    VStack{
                         
                         
@@ -61,6 +62,7 @@ struct SearchInfo: View {
                                             if let OGFace = UIImage(data: OGimage) {
                                                 Image(uiImage: OGFace)
                                                     .resizable()
+                                                    .cornerRadius(25).overlay(Rectangle().stroke(Color.Orangish,lineWidth: 2)).cornerRadius(25)
                                                     .scaledToFit()
                                                     .frame(width: 150, height: 200)
                                             } else {
@@ -77,6 +79,7 @@ struct SearchInfo: View {
                                             if let uiImage = UIImage(data: imageData) {
                                                 Image(uiImage: uiImage)
                                                     .resizable()
+                                                    .cornerRadius(25).overlay(Rectangle().stroke(Color.Orangish,lineWidth: 2)).cornerRadius(25)
                                                     .scaledToFit()
                                                     .frame(width: 150, height: 200)
                                             } else {
@@ -95,8 +98,15 @@ struct SearchInfo: View {
                                             count = indiciesCount - 1
                                         }
                                     }) {
-                                        Text("Back").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white).padding().background(Color.black)
+                                        ZStack{
+                                            Text("Back").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white).padding().background(Color.white).opacity(0.2).overlay(Text("Back").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white))
+                                            
+                                            RoundedRectangle(cornerRadius: 20, style: .continuous).stroke(Color.Orangish,lineWidth: 3).frame(width: 75, height: 50)
+                                        }
+                                        
                                     }.clipShape(Capsule()).padding()
+                                                        
+                                    
                                     
                                     Button(action: {
                                         if count < indiciesCount-1{
@@ -105,8 +115,12 @@ struct SearchInfo: View {
                                             count = 0
                                         }
                                     }) {
-                                        Text("Next").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white).padding().background(Color.black)
+                                        ZStack{
+                                            Text("Next").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white).padding().background(Color.white).opacity(0.2).overlay(Text("Next").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white))
+                                            RoundedRectangle(cornerRadius: 20, style: .continuous).stroke(Color.Orangish,lineWidth: 3).frame(width: 75, height: 50)
+                                        }
                                     }.clipShape(Capsule()).padding()
+                                        
                                 }
                                 
                                 Text(personIDArrayThing[count]).font(Font.system(size: 20, weight: .bold)).foregroundColor(.white)
@@ -115,7 +129,7 @@ struct SearchInfo: View {
                                     Text("\(confidencePercentArray[count] * 100, specifier: "%.2f")%").font(Font.system(size: 20, weight: .bold)).foregroundColor(.white)
                                 }
                             }.offset(y: -150)
-                            
+                          
                             
                             
                             

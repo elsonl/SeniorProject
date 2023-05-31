@@ -86,18 +86,22 @@ struct ContentView: View {
     var body: some View {
   NavigationView{
         ZStack{
-            backgroundGradient
+//            backgroundGradient
+            Image("BackGround").resizable().aspectRatio(contentMode: .fill) .frame(minWidth: 0, maxWidth: .infinity).edgesIgnoringSafeArea(.all)
+                //.rotationEffect(.degrees(90))
             VStack{
 //                Image("FinderOfFame").resizable().frame(width: 400, height: 75).offset(y: -30)
                 VStack {
-                    Image("FinderFame").resizable().background(Color.B1).clipShape(Rectangle()).shadow(color: Color.G3, radius: 14).overlay(Rectangle().stroke(Color.white,lineWidth: 0)).frame(width: 210, height: 210).scaledToFit ().frame(alignment: .top)
-                        .padding()
-                   
+                    Image("FFamefinder-Transparent").resizable().background(Color.clear).clipShape(Rectangle())
+                        .frame(width: 260, height: 240).scaledToFit ().frame(alignment: .top)
+                        .padding().offset(y:30)
+
                     //uploaded image
                     if let image = selectedImage {
                         VStack{
                             Image(uiImage: image)
                                 .resizable()
+                                .cornerRadius(25)
                                 .scaledToFit()
                                 .frame(width: 250, height: 300).shadow(color: Color.G3, radius: 15)
 //                                .aspectRatio(image.size, contentMode: .fit)
@@ -109,7 +113,7 @@ struct ContentView: View {
                             Image("FameFinder")
                                 .resizable()
                                 .frame(width: 250, height: 300)
-                                .aspectRatio(contentMode: .fit)
+                                .aspectRatio(contentMode: .fit).cornerRadius(25)
                             //                            .border(Color.black, width: 2)
                                 .opacity(0.0)
                             Text("No image selected").font(Font.system(size: 20, weight: .bold)).foregroundColor(Color.white)

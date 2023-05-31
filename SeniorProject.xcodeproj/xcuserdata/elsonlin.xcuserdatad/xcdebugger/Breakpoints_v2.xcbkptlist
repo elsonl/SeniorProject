@@ -3,4 +3,22 @@
    uuid = "3EF2635D-1960-411E-AD61-40F399AAC734"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BDD9407-7B97-4E5A-8386-DB775B56429D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SeniorProject/SearchInfo.swift"
+            startingColumnNumber = "136"
+            endingColumnNumber = "141"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

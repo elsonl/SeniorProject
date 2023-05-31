@@ -45,7 +45,7 @@ struct Loading_Screen: View {
                         Text("CPU Score = \(computerPoints)").font(Font.system(size: 18, weight: .bold)).foregroundColor(.black)
                     }.padding()
                     
-                    Text("CPU").font(Font.system(size: 24, weight: .heavy)).foregroundColor(.G3)
+                    Text("CPU").font(Font.system(size: 24, weight: .heavy)).foregroundColor(.white)
                     Image(CPUChoice[cpuPick]).resizable()
                         .frame(width: 100, height: 100)
                         .aspectRatio(contentMode: .fit).border(colorArray[cColor], width: 4)
